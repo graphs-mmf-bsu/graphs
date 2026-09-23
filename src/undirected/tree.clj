@@ -3,6 +3,9 @@
             [undirected.graph :as g]
             [utils :refer [???]]))
 
+(defn edge-count-tree? [graph]
+  (???))
+
 (defn tree? [graph]
   (???))
 
