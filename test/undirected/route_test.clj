@@ -85,6 +85,7 @@
 
 (deftest cyclic?-test
   (is (cyclic? (route A)))
+  (is (cyclic? (route A B A)))
   (is (cyclic? (route A B C A)))
   (is (cyclic? (route A B C A B C A)))
   (is (not (cyclic? (route A B C)))))
@@ -93,12 +94,14 @@
   (is (cycle? (route A)))
   (is (cycle? (route A B C A)))
   (is (cycle? (route A B C D B E A)))
+  (is (not (cycle? (route A B A))))
   (is (not (cycle? (route A B C A B C A))))
   (is (not (cycle? (route A B C)))))
 
 (deftest simple-cycle?-test
   (is (simple-cycle? (route A)))
   (is (simple-cycle? (route A B C A)))
+  (is (not (simple-cycle? (route A B A))))
   (is (not (simple-cycle? (route A B C D B))))
   (is (not (simple-cycle? (route A B C D B E A)))))
 
