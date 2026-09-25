@@ -42,6 +42,8 @@
   (is (not (subroute? (route A D C) (route A B C))))
   (is (not (subroute? (route C B A) (route A B C))))
   (is (not (subroute? (route B C D) (route A B C D E))))
+  (is (not (subroute? (route A B C D) (route A B C D E))))
+  (is (not (subroute? (route B C D E) (route A B C D E))))
   (is (not (subroute? (route A C E) (route A B C D E)))))
 
 (deftest route->graph-test
