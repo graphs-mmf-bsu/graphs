@@ -15,7 +15,7 @@
     (is (not (hamiltonian-cycle? g (route A B C D)))
         "Маршрут должен быть циклическим")
     (is (not (hamiltonian-cycle? g (route A B C D E F A)))
-        "Все вершины маршрута должен быть вершинами графа")
+        "Все вершины маршрута должны быть вершинами графа")
     (is (not (hamiltonian-cycle? g (route A C B D A)))
         "Все рёбра маршрута должны быть рёбрами графа")
     (is (not (hamiltonian-cycle? g (route A B C A)))
