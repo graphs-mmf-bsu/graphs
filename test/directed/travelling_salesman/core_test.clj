@@ -27,6 +27,28 @@
         p (shortest-hamiltonian-cycle-little g)]
     (is (= 6 (route-length g p)))))
 
+(deftest shortest-hamiltonian-cycle-little-3-one-path-test
+  (let [g (weighted-graph [A B C] [A B 2] [B C 3] [C A 4])
+        p (shortest-hamiltonian-cycle-little g)]
+    (is (= 9 (route-length g p)))))
+
+(deftest shortest-hamiltonian-cycle-little-3-same-cost-test
+  (let [g (weighted-graph [A B C]
+                          [A B 1] [A C 1]
+                          [B A 1] [B C 1]
+                          [C A 1] [C B 1])
+        p (shortest-hamiltonian-cycle-little g)]
+    (is (= 3 (route-length g p)))))
+
+(deftest shortest-hamiltonian-cycle-little-4-same-cost-test
+  (let [g (weighted-graph [A B C D]
+                          [A B 1] [A C 1] [A D 1]
+                          [B A 1] [B C 1] 
+                          [C A 1] [C B 1] [C D 1]
+                          [D A 1] [D B 1] [D C 1])
+        p (shortest-hamiltonian-cycle-little g)]
+    (is (= 4 (route-length g p)))))
+
 (deftest shortest-hamiltonian-cycle-little-example-test
   (let [p (shortest-hamiltonian-cycle-little example-graph)]
     (testing "Длина цикла"

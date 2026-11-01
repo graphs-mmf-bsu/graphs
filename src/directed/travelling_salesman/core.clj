@@ -12,21 +12,22 @@
   (loop [best-length ##Inf
          best-cycle nil
          nodes #{(???)}]
-    (if (empty? nodes)
-      best-cycle
-      (let [node (???)
-            remaining-nodes (???)]
-        (if (n/leaf? node)
-          (let [cycle (???)
-                length (???)]
-            (if (< length best-length)
-              (recur (???)
-                     (???)
-                     (set/select #(< (n/lower-bound %) length) remaining-nodes))
-              (recur (???)
-                     (???)
-                     remaining-nodes)))
-          (let [[n-without n-with] (n/branch-on-highest-penalty-arc node)]
+    (let [nodes-to-consider (set/select #(< (n/lower-bound %) best-length) nodes)]
+      (if (???)
+        best-cycle
+        (let [node (???)
+              remaining-nodes (???)]
+          (if (n/leaf? node)
+            (let [new-cycle (???)
+                  new-length (???)]
+              (assert (= new-length (n/lower-bound node)))
+              (if (< new-length best-length)
+                (recur (???)
+                       (???)
+                       remaining-nodes)
+                (recur (???)
+                       (???)
+                       remaining-nodes)))
             (recur best-length
                    best-cycle
                    (???))))))))

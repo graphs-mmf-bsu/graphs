@@ -65,6 +65,17 @@
 ;; @formatter:on
 
 ;; @formatter:off
+(deftest arc-penalty-infinity-test
+  (let [cost-map {             (arc A B) 0,
+                  (arc B A) 0,              (arc B C) 0,
+                  (arc C A) 2, (arc C B) 0              }]
+    (is (= ##Inf (arc-penalty cost-map (arc A B))) "A B")
+    (is (= 2 (arc-penalty cost-map (arc B A))) "B A")
+    (is (= ##Inf (arc-penalty cost-map (arc B C))) "B C")
+    (is (= 2 (arc-penalty cost-map (arc C B))) "C B")))
+;; @formatter:on
+
+;; @formatter:off
 (deftest highest-penalty-arc-test
   (let [cost-map {             (arc A B) 0, (arc A C) 1,
                   (arc B A) 0,              (arc B C) 0,

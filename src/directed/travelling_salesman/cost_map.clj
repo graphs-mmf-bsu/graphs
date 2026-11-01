@@ -33,7 +33,7 @@
   [cost-map arc]
   {:pre [(zero? (cost-map arc))]}
   (let [arcs (keys cost-map)
-        min-cost-of-arcs (fn [f] (apply min (map cost-map (filter f arcs))))
+        min-cost-of-arcs (fn [f] (apply min (conj (map cost-map (filter f arcs)) ##Inf)))
         [i j] (ends arc)]
     (+ (min-cost-of-arcs #(and (= (from %) i) (not= (to %) j)))
        (min-cost-of-arcs #(and (not= (from %) i) (= (to %) j))))))

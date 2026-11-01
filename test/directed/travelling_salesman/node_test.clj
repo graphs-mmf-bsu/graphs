@@ -127,6 +127,24 @@
              (path-fragments n-with))))))
 ;; @formatter:on
 
+;; @formatter:off
+(deftest branch-on-highest-penalty-arc-infinity-test
+  (let [n (make-node {                          (arc A C) 1,
+                      (arc B A) 0,              (arc B C) 0,
+                      (arc C A) 2, (arc C B) 0             }
+                     10
+                     #{(route D E)})
+        [n-with] (branch-on-highest-penalty-arc n)]
+    (testing "Включающие дугу"
+      (is (= {             (arc A C) 0,
+              (arc B A) 0             }
+             (cost-map n-with)))
+      (is (= 11
+             (lower-bound n-with)))
+      (is (= #{(route D E) (route C B)}
+             (path-fragments n-with))))))
+;; @formatter:on
+
 (deftest leaf?-test
   (testing "Узел не является листом"
     (let [node (make-node {(arc A B) 0, (arc A C) 1,
