@@ -17,7 +17,7 @@
     (is (not (hamiltonian-cycle? g (route A B C D E F A)))
         "Все вершины маршрута должны быть вершинами графа")
     (is (not (hamiltonian-cycle? g (route A C B D A)))
-        "Все рёбра маршрута должны быть рёбрами графа")
+        "Все дуги маршрута должны быть дугами графа")
     (is (not (hamiltonian-cycle? g (route A B C A)))
         "Маршрут должен содержать все вершины графа")
     (is (not (hamiltonian-cycle? g (route A B C D A B C D A)))
@@ -48,15 +48,15 @@
     (let [[new-route updated-routes] (connect-routes-by-arc (arc C D) #{(route A B) (route E F G)})]
       (is (= (route C D) new-route))
       (is (= #{(route C D) (route A B) (route E F G)} updated-routes))))
-  (testing "Добавлен маршрут перед ребром"
+  (testing "Добавлен маршрут перед дугой"
     (let [[new-route updated-routes] (connect-routes-by-arc (arc C D) #{(route A B C) (route E F G)})]
       (is (= (route A B C D) new-route))
       (is (= #{(route A B C D) (route E F G)} updated-routes))))
-  (testing "Добавлен маршрут после ребра"
+  (testing "Добавлен маршрут после дуги"
     (let [[new-route updated-routes] (connect-routes-by-arc (arc C D) #{(route A B) (route D E F G)})]
       (is (= (route C D E F G) new-route))
       (is (= #{(route C D E F G) (route A B)} updated-routes))))
-  (testing "Добавлены маршруты до и после ребра"
+  (testing "Добавлены маршруты до и после дуги"
     (let [[new-route updated-routes] (connect-routes-by-arc (arc C D) #{(route A B C) (route D E F) (route G H)})]
       (is (= (route A B C D E F) new-route))
       (is (= #{(route A B C D E F) (route G H)} updated-routes)))))
