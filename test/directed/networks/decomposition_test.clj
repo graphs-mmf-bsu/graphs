@@ -14,6 +14,8 @@
     (is (elementary-path? net (route S B S)) "Цикл, проходящий через источник")
     (is (elementary-path? net (route B C T B)) "Цикл, проходящий через сток")
     (is (elementary-path? net (route A B C A)) "Цикл, проходящий через внутренние вершины")
+    (is (not (elementary-path? net (route S A B C A B T))) "Не путь")
+    (is (not (elementary-path? net (route S A B C A B S))) "Циклический маршрут, но не цикл")
     (is (not (elementary-path? net (route S A B C))) "Не содержит сток и не цикл")
     (is (not (elementary-path? net (route B C T))) "Не содержит источник и не цикл")
     (is (not (elementary-path? net (route A B C))) "Не содержит ни источник ни сток и не цикл")
