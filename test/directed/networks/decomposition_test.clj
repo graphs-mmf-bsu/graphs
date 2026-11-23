@@ -113,7 +113,7 @@
                                                  elements)
                            combined-flow (reduce add-flow elementary-flows)]
                        (is (every? #(elementary-path? net %)
-                                   (map second elements))
+                                   (map first elements))
                            "Все пути являются элементарными")
                        (is (every? (fn [a] (= (flow a) (combined-flow a)))
                                    (n/arcs net))
